@@ -10,7 +10,11 @@ function readImage() {
         FR.onload = function(e) {
            var img = new Image();
            img.onload = function() {
-             context.drawImage(img, 0, 0);
+             var hRatio = canvas.width / img.width    ;
+             var vRatio = canvas.height / img.height  ;
+             var ratio  = Math.min ( hRatio, vRatio );
+             context.drawImage(img, 0,0, img.width, img.height, 0,0,img.width*ratio, img.height*ratio);
+             //context.drawImage(img, 0, 0, canvas.width, canvas.height);
            };
            img.src = e.target.result;
         };
@@ -20,19 +24,8 @@ function readImage() {
 
 el("fileUpload").addEventListener("change", readImage, false);
 
-/*
-var myElement = document.getElementById('mainSection');
 
-// create a simple instance
-// by default, it only adds horizontal recognizers
-var mc = new Hammer(myElement);
-
-// listen to events...
-mc.on("panleft panright tap press", function(ev) {
-    myElement.textContent = ev.type +" gesture detected.";
-});
-*/
-
+// gesture recognition
 var mc = new Hammer(canvas)
 mc.on("panleft panright tap press", function(ev) {
     context.clearRect(0, 0, canvas.width, canvas.height);
