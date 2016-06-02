@@ -14,4 +14,22 @@
   margin: 4px 2px;
 }
 
+#stage {
+  background: #20bb5f;
+  border: 5px solid #009b2f;
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  font: 30px;
+  left: 200px;
+  top: 50px;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  background: #333;
+}
 
