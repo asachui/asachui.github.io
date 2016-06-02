@@ -1,3 +1,4 @@
+/*
 #mainSection {
   background: silver;
   height: 600px;
@@ -13,12 +14,13 @@
   font-size: 16px;
   margin: 4px 2px;
 }
+*/
 
 #stage {
   background: #20bb5f;
   border: 5px solid #009b2f;
-  width: 200px;
-  height: 200px;
+  width: 210px;
+  height: 210px;
   line-height: 200px;
   text-align: center;
   font: 30px;
@@ -32,4 +34,5 @@ body {
   padding: 10px;
   background: #333;
 }
+
 

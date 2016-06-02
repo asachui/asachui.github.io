@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>A2</title>
-	<link rel='stylesheet' type='text/css' href='styles.css'>
+	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- unused
+    	<meta name="description" content="">
+    	<meta name="author" content="">
+    	<link rel="icon" href=""> -->
+
+    	<title>A2</title>
+
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link rel="stylesheet" type="text/css" href="ie10-viewport-bug-workaround.css">
+      <!-- Custom styles for this template -->
+      <link rel="stylesheet" type="text/css" href="styles.css">
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -17,15 +31,56 @@
 <script src="jquery-2.1.3.min.js"></script>
 <script src="velocity.min.js"></script>
 
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+				</button>
+				<label for="fileUpload"><a class="navbar-brand">Photo</a></label>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a class="pull-right" href="">Background</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<div class="container">
+
+    		<div id="mainSection">
+    			<div id="stage">
+    				<canvas id="canvas"  width="200" height="200"></canvas>
+    			</div>
+    		</div>
+    		<div hidden>
+    			<input class="button" type='file' id="fileUpload" />
+    		</div>
+
+	</div><!-- /.container -->
+
+  	<!-- Bootstrap core JavaScript
+    	================================================== -->
+    	<!-- Placed at the end of the document so the pages load faster -->
+    	<script>window.jQuery || document.write('<script src="jquery-2.1.3.min.js"><\/script>')</script>
+    	<script src="bootstrap.min.js"></script>
+    	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    	<script src="ie10-viewport-bug-workaround.js"></script>
+  </body>
+
+<!-- OLD CODE
     <body>
     	<div id="mainSection">
-    		<!-- <canvas id="canvas"  width="600" height="600"></canvas> -->
     		<div id="stage"><canvas id="canvas"  width="200" height="200"></canvas></div>
     	</div>
     	<div id="footerSection">
     		<input class="button" type='file' id="fileUpload" />
     	</div>
-    </body>
+    </body> -->
 
 <script src="scripts.js"></script>
 </html>
