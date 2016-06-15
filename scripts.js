@@ -70,9 +70,6 @@ var startRotation = 0;
 manager.on('rotatestart', function(e) {
   //console.log("e.Rotation " + e.rotation);
   startRotation = e.rotation;
-  if (Math.abs(currentRotation - startRotation)>=170) {
-    startRotation += 180;
-  }
   //console.log("e.Rotation " + e.rotation);
   //console.log("startRotation " + startRotation);
 });
