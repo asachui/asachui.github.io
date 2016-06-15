@@ -66,11 +66,17 @@ manager.add(Tap);
 // subscribe to events
 var liveScale = 1;
 var currentRotation = 0;
+var startRotation = 0;
+manager.on('rotatestart', function(e) {
+  startRotation = e.rotation;
+  //console.log("e.Rotation " + e.rotation);
+  //console.log("startRotation " + startRotation);
+});
 manager.on('rotatemove', function(e) {
     // do something cool
     //console.log("currentRotation " + currentRotation);
     //console.log("e.Rotation " + e.rotation);
-    var rotation = currentRotation + Math.round(liveScale * (e.rotation-270));  // why 270?
+    var rotation = currentRotation + Math.round(liveScale * (e.rotation - startRotation));
     rotation = rotation % 360;
     //console.log("rotation " + rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
@@ -78,7 +84,7 @@ manager.on('rotatemove', function(e) {
 manager.on('rotateend', function(e) {
     // cache the rotation
     currentRotation += Math.round(e.rotation);
-    currentRotation = currentRotation % 360 - 270;  // why 270?
+    currentRotation = currentRotation % 360 - startRotation;
     //console.log("currentRotation after move " + currentRotation);
 });
 
