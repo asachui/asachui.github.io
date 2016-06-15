@@ -85,7 +85,7 @@ manager.on('rotatemove', function(e) {
 manager.on('rotateend', function(e) {
     // cache the rotation
     currentRotation += Math.round(e.rotation);
-    currentRotation = currentRotation % 360 - startRotation;
+    currentRotation = (currentRotation- startRotation) % 360;
     //console.log("currentRotation after move " + currentRotation);
 });
 
