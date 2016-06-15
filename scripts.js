@@ -85,9 +85,6 @@ manager.on('rotatemove', function(e) {
 manager.on('rotateend', function(e) {
     // cache the rotation
     currentRotation += Math.round(e.rotation - startRotation);
-    if (Math.abs(e.rotation - startRotation) > 175) {
-      currentRotation += 180;
-    }
     currentRotation = currentRotation%360;
     //console.log("currentRotation after move " + currentRotation);
 });
@@ -107,6 +104,7 @@ manager.on('panend', function(e) {
 });
 
 
+/*
 // subscribe to events
 var currentScale = 1;
 function getRelativeScale(scale) {
@@ -122,6 +120,7 @@ manager.on('pinchend', function(e) {
   currentScale = getRelativeScale(e.scale);
   liveScale = currentScale;
 });
+*/
 
 
 var bgShowing = false;
