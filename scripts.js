@@ -104,7 +104,7 @@ manager.on('panend', function(e) {
 });
 
 
-/*
+
 // subscribe to events
 var currentScale = 1;
 function getRelativeScale(scale) {
@@ -120,7 +120,7 @@ manager.on('pinchend', function(e) {
   currentScale = getRelativeScale(e.scale);
   liveScale = currentScale;
 });
-*/
+
 
 
 var bgShowing = false;
