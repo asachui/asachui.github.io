@@ -78,6 +78,9 @@ manager.on('rotatemove', function(e) {
     //console.log("currentRotation " + currentRotation);
     //console.log("e.Rotation " + e.rotation);
     var rotation = currentRotation + Math.round(liveScale * (e.rotation - startRotation));
+    if (Math.abs(e.rotation - startRotation)>=180) {
+      rotation -= 180;
+    }
     rotation = rotation % 360;
     //console.log("rotation " + rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
