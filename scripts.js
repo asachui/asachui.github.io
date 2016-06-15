@@ -68,6 +68,7 @@ var liveScale = 1;
 var currentRotation = 0;
 var startRotation = 0;
 manager.on('rotatestart', function(e) {
+  //console.log("e.Rotation " + e.rotation);
   startRotation = e.rotation;
   //console.log("e.Rotation " + e.rotation);
   //console.log("startRotation " + startRotation);
@@ -83,8 +84,13 @@ manager.on('rotatemove', function(e) {
 });
 manager.on('rotateend', function(e) {
     // cache the rotation
+    var oldRotation = 0;
+    oldRotation = currentRotation;
     currentRotation += Math.round(e.rotation);
-    currentRotation = currentRotation % 360 - startRotation;
+    currentRotation = (currentRotation- startRotation) % 360 ;
+    if (Math.abs(currentRotation-oldRotation) >= 180) {
+        currentRotation = (currentRotation-180) % 360;
+    }
     //console.log("currentRotation after move " + currentRotation);
 });
 
