@@ -50,7 +50,7 @@ var DoubleTap = new Hammer.Tap({
 
 // use them together
 Rotate.recognizeWith([Pan]);
-//Pinch.recognizeWith([Rotate, Pan]);
+Pinch.recognizeWith([Rotate, Pan]);
 
 DoubleTap.recognizeWith([Tap]);
 Tap.requireFailure([DoubleTap]);
