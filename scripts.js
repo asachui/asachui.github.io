@@ -34,8 +34,7 @@ var main = el('main');
 $stage = jQuery(stage);
 
 // create a manager for that element
-var manager = new Hammer.Manager(stage);
-var manager2 = new Hammer.Manager(main);
+var manager = new Hammer.Manager(main);
 
 // create recognizers
 var Pan = new Hammer.Pan();
@@ -51,44 +50,42 @@ var DoubleTap = new Hammer.Tap({
 
 // use them together
 Rotate.recognizeWith([Pan]);
-Pinch.recognizeWith([Rotate, Pan]);
+//Pinch.recognizeWith([Rotate, Pan]);
 
 DoubleTap.recognizeWith([Tap]);
 Tap.requireFailure([DoubleTap]);
 
 // add the recognizers
-manager2.add(Pan);
-manager2.add(Rotate);
-manager2.add(Pinch);
-//manager.add(DoubleTap);
-//manager.add(Tap);
-manager2.add(DoubleTap);
-manager2.add(Tap);
+manager.add(Pan);
+manager.add(Rotate);
+manager.add(Pinch);
+manager.add(DoubleTap);
+manager.add(Tap);
 
 
 // subscribe to events
 var liveScale = 1;
 var currentRotation = 0;
-manager2.on('rotatemove', function(e) {
+manager.on('rotatemove', function(e) {
     // do something cool
     var rotation = currentRotation + Math.round(liveScale * e.rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
 });
-manager2.on('rotateend', function(e) {
+manager.on('rotateend', function(e) {
     // cache the rotation
     currentRotation += Math.round(e.rotation);
 });
 
 var deltaX = 0;
 var deltaY = 0;
-manager2.on('panmove', function(e) {
+manager.on('panmove', function(e) {
   // do something cool
   var dX = deltaX + (e.deltaX);
   var dY = deltaY + (e.deltaY);
   $.Velocity.hook($stage, 'translateX', dX + 'px');
   $.Velocity.hook($stage, 'translateY', dY + 'px');
 });
-manager2.on('panend', function(e) {
+manager.on('panend', function(e) {
   deltaX = deltaX + e.deltaX;
   deltaY = deltaY + e.deltaY;
 });
@@ -98,19 +95,19 @@ var currentScale = 1;
 function getRelativeScale(scale) {
   return scale * currentScale;
 }
-manager2.on('pinchmove', function(e) {
+manager.on('pinchmove', function(e) {
   // do something cool
   var scale = getRelativeScale(e.scale);
   $.Velocity.hook($stage, 'scale', scale);
 });
-manager2.on('pinchend', function(e) {
+manager.on('pinchend', function(e) {
   // cache the scale
   currentScale = getRelativeScale(e.scale);
   liveScale = currentScale;
 });
 
 var bgShowing = false;
-manager2.on('doubletap', function() {
+manager.on('doubletap', function() {
     console.log('doubletapped');
     if (bgShowing) {
         el("bgImage").src = "blank.png";
