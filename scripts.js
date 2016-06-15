@@ -70,6 +70,9 @@ var startRotation = 0;
 manager.on('rotatestart', function(e) {
   //console.log("e.Rotation " + e.rotation);
   startRotation = e.rotation;
+  if (Math.abs(currentRotation - startRotation)>=170) {
+    startRotation += 180;
+  }
   //console.log("e.Rotation " + e.rotation);
   //console.log("startRotation " + startRotation);
 });
@@ -78,9 +81,6 @@ manager.on('rotatemove', function(e) {
     //console.log("currentRotation " + currentRotation);
     //console.log("e.Rotation " + e.rotation);
     var rotation = currentRotation + Math.round(liveScale * (e.rotation - startRotation));
-    if (Math.abs(e.rotation - startRotation)>=120) {
-      rotation = currentRotation;
-    }
     rotation = rotation % 360;
     //console.log("rotation " + rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
