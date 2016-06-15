@@ -68,12 +68,18 @@ var liveScale = 1;
 var currentRotation = 0;
 manager.on('rotatemove', function(e) {
     // do something cool
-    var rotation = currentRotation + Math.round(e.rotation);
+    //console.log("currentRotation " + currentRotation);
+    //console.log("e.Rotation " + e.rotation);
+    var rotation = currentRotation + Math.round(liveScale * (e.rotation-270));  // why 270?
+    rotation = rotation % 360;
+    //console.log("rotation " + rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
 });
 manager.on('rotateend', function(e) {
     // cache the rotation
     currentRotation += Math.round(e.rotation);
+    currentRotation = currentRotation % 360 - 270;  // why 270?
+    //console.log("currentRotation after move " + currentRotation);
 });
 
 var deltaX = 0;
@@ -106,6 +112,7 @@ manager.on('pinchend', function(e) {
   currentScale = getRelativeScale(e.scale);
   liveScale = currentScale;
 });
+
 
 
 var bgShowing = false;
