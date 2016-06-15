@@ -68,7 +68,7 @@ var liveScale = 1;
 var currentRotation = 0;
 manager.on('rotatemove', function(e) {
     // do something cool
-    var rotation = currentRotation + Math.round(liveScale * e.rotation);
+    var rotation = currentRotation + Math.round(e.rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
 });
 manager.on('rotateend', function(e) {
@@ -90,6 +90,7 @@ manager.on('panend', function(e) {
   deltaY = deltaY + e.deltaY;
 });
 
+
 // subscribe to events
 var currentScale = 1;
 function getRelativeScale(scale) {
@@ -105,6 +106,7 @@ manager.on('pinchend', function(e) {
   currentScale = getRelativeScale(e.scale);
   liveScale = currentScale;
 });
+
 
 var bgShowing = false;
 manager.on('doubletap', function() {
