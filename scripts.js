@@ -84,12 +84,11 @@ manager.on('rotatemove', function(e) {
 });
 manager.on('rotateend', function(e) {
     // cache the rotation
-    if (e.rotation < 180) {
-    currentRotation += Math.round(e.rotation);
-  } else {
-    currentRotation += Math.round(e.rotation) + 180;
-  }
-    currentRotation = (currentRotation- startRotation) % 360;
+    currentRotation += Math.round(e.rotation - startRotation);
+    if (Math.abs(e.rotation - startRotation) > 175) {
+      currentRotation += 180;
+    }
+    currentRotation = currentRotation%360;
     //console.log("currentRotation after move " + currentRotation);
 });
 
