@@ -78,16 +78,17 @@ manager.on('rotatemove', function(e) {
     //console.log("currentRotation " + currentRotation);
     //console.log("e.Rotation " + e.rotation);
     var rotation = currentRotation + Math.round(liveScale * (e.rotation - startRotation));
-    if (Math.abs(e.rotation - startRotation) > 175) {
-        rotation += 180;
-    }
     rotation = rotation % 360;
     //console.log("rotation " + rotation);
     $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
 });
 manager.on('rotateend', function(e) {
     // cache the rotation
+    if (e.rotation < 180) {
     currentRotation += Math.round(e.rotation);
+  } else {
+    currentRotation += Math.round(e.rotation) + 180;
+  }
     currentRotation = (currentRotation- startRotation) % 360;
     //console.log("currentRotation after move " + currentRotation);
 });
