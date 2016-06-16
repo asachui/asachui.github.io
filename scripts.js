@@ -87,7 +87,6 @@ manager.on('pinchmove', function(e) {
 manager.on('pinchend', function(e) {
   // cache the scale
   currentScale = getRelativeScale(e.scale);
-  liveScale = currentScale;
 });
 
 // show background button pressed
