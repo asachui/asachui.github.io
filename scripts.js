@@ -1,6 +1,3 @@
-$(document).on('pagebeforeshow', '#index', function(){
-    $("#tabs").tabs();
-});
 
 // backgrounds defined as { id : filename }
 var backgrounds = {
@@ -125,6 +122,11 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     el("bgImage").src = currentBG;
     bgShowing = true;
 });
+
+
+
+
+
 
 
 

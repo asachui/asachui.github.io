@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<script src="touch-emulator.js"></script>
+<script> TouchEmulator(); </script>
+<script src="hammer.min.js"></script>
+<script src="jquery-2.1.3.min.js"></script>
+<script src="velocity.min.js"></script>
+
 <head>
 	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,13 +35,6 @@
       <![endif]-->
 </head>
 
-<script src="touch-emulator.js"></script>
-<script> TouchEmulator(); </script>
-<script src="hammer.min.js"></script>
-<script src="jquery-2.1.3.min.js"></script>
-<script src="velocity.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-
 <body>
 
       <!-- navigation -->
@@ -50,7 +50,7 @@
 				<label for="fileUpload"><a class="navbar-brand"><i class="fa fa-camera fa-2x"></i></a></label>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" id="tabs">
 					<li class="active"><a id="bg1" data-toggle="tab">Background 1</a></li>
 					<li class=""><a id="bg2" data-toggle="tab">Background 2</a></li>
 				</ul>
