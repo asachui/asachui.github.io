@@ -1,4 +1,6 @@
-
+$(document).on('pagebeforeshow', '#index', function(){
+    $("#tabs").tabs();
+});
 
 // backgrounds defined as { id : filename }
 var backgrounds = {
