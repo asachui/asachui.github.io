@@ -98,11 +98,12 @@ el("showBackground").addEventListener("click", toggleBackground);
 var bgShowing = false;
 function toggleBackground() {
     if (bgShowing) {
-        el("bgImage").src = backgrounds["blank"];
+        el("bgImage").src = backgrounds["blank"][0];
     } else {
         el("bgImage").src = currentBGfile;
     }
     bgShowing = !bgShowing;
+    updateColors();
 }
 
 // rotate button pressed
@@ -165,6 +166,12 @@ function updateColors() {
           el("noIcon").style.color = "#337ab7";
           el("yesIcon").style.color = "#337ab7";
       break;
+    }
+
+    if (bgShowing) {
+          el("bgIcon").style.color = "#00FF00";
+    } else {
+          el("bgIcon").style.color = "#337ab7";
     }
 }
 
