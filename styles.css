@@ -8,12 +8,14 @@
 }
 
 #stage {
-  background: #20bb5f;
+  background: url("defaultPhoto.png");
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
   border: 5px solid #009b2f;
   width: 210px;
   height: 210px;
-  left: 100px;
-  top: 200px;
+  left: 50px;
+  top: 150px;
   position: absolute;
 }
 
@@ -50,9 +52,35 @@ body {
 .navbar-nav>li {
   float: none;
 }
-.navbar-collapse.collapse.in{
+.navbar-collapse.collapse.in {
   display:block !important;
 }
+
+.navbar-footer {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+}
+
+.navbar-footer-left {
+  float: left;
+}
+.footer-left-elt {
+  float: inherit;
+  margin-right: 30px;
+}
+
+.navbar-footer-right {
+  float: right;
+}
+.footer-right-elt {
+  float: inherit;
+  margin-left: 30px;
+}
+
+
 
 
 

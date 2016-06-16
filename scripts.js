@@ -1,10 +1,22 @@
 
-// file upload from PC
+
+// backgrounds defined as { id : filename }
+var backgrounds = {
+    "blank" : "blank.png" ,
+    "bg1" : "bg1.png" ,
+    "bg2" : "bg2.png"
+};
+var currentBG = backgrounds["bg1"]
+
+
+// helper function
 function el(id){return document.getElementById(id);} // Get elem by ID
+
+// file upload from PC
+el("fileUpload").addEventListener("change", readImage, false);
 
 var canvas  = el("canvas");
 var context = canvas.getContext("2d");
-
 function readImage() {
 	if ( this.files && this.files[0] ) {
 		var FR= new FileReader();
@@ -25,8 +37,6 @@ function readImage() {
 	}
 }
 
-el("fileUpload").addEventListener("change", readImage, false);
-
 // get a reference to an element
 //var stage = document.getElementById('stage');
 var stage = el('stage');
@@ -38,56 +48,16 @@ var manager = new Hammer.Manager(main);
 
 // create recognizers
 var Pan = new Hammer.Pan();
-var Rotate = new Hammer.Rotate();
 var Pinch = new Hammer.Pinch();
-var Tap = new Hammer.Tap({
-  taps: 1
-});
-var DoubleTap = new Hammer.Tap({
-  event: 'doubletap',
-  taps: 2
-});
 
-// use them together
-Rotate.recognizeWith([Pan]);
-Pinch.recognizeWith([Rotate, Pan]);
-
-DoubleTap.recognizeWith([Tap]);
-Tap.requireFailure([DoubleTap]);
+// use gestures together
+Pinch.recognizeWith([Pan]);
 
 // add the recognizers
 manager.add(Pan);
-manager.add(Rotate);
 manager.add(Pinch);
-manager.add(DoubleTap);
-manager.add(Tap);
 
 
-// subscribe to events
-var liveScale = 1;
-var currentRotation = 0;
-var startRotation = 0;
-manager.on('rotatestart', function(e) {
-  //console.log("e.Rotation " + e.rotation);
-  startRotation = e.rotation;
-  //console.log("e.Rotation " + e.rotation);
-  //console.log("startRotation " + startRotation);
-});
-manager.on('rotatemove', function(e) {
-    // do something cool
-    //console.log("currentRotation " + currentRotation);
-    //console.log("e.Rotation " + e.rotation);
-    var rotation = currentRotation + Math.round(liveScale * (e.rotation - startRotation));
-    rotation = rotation % 360;
-    //console.log("rotation " + rotation);
-    $.Velocity.hook($stage, 'rotateZ', rotation + 'deg');
-});
-manager.on('rotateend', function(e) {
-    // cache the rotation
-    currentRotation += Math.round(e.rotation - startRotation);
-    currentRotation = currentRotation%360;
-    //console.log("currentRotation after move " + currentRotation);
-});
 
 var deltaX = 0;
 var deltaY = 0;
@@ -102,7 +72,6 @@ manager.on('panend', function(e) {
   deltaX = deltaX + e.deltaX;
   deltaY = deltaY + e.deltaY;
 });
-
 
 
 // subscribe to events
@@ -121,18 +90,39 @@ manager.on('pinchend', function(e) {
   liveScale = currentScale;
 });
 
-
+// show background button pressed
+el("showBackground").addEventListener("click", toggleBackground);
 
 var bgShowing = false;
-manager.on('doubletap', function() {
-    console.log('doubletapped');
+function toggleBackground() {
     if (bgShowing) {
-        el("bgImage").src = "blank.png";
+        el("bgImage").src = backgrounds["blank"];
     } else {
-        el("bgImage").src = "pic1.png";
-
+        el("bgImage").src = currentBG;
     }
     bgShowing = !bgShowing;
+}
+
+// rotate button pressed
+el("rotateLeft").addEventListener("click", rotateImageLeft);
+el("rotateRight").addEventListener("click", rotateImageRight);
+
+currentRotation = 0;
+function rotateImageLeft() {
+    currentRotation -= 90;
+    $.Velocity.hook($stage, 'rotateZ', currentRotation + 'deg');
+}
+function rotateImageRight() {
+    currentRotation += 90;
+    $.Velocity.hook($stage, 'rotateZ', currentRotation + 'deg');
+}
+
+// background change
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    currentBG = backgrounds[ $(e.target).attr("id") ];
+    el("bgImage").src = currentBG;
 });
+
+
 
 

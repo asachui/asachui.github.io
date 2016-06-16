@@ -10,7 +10,7 @@
     	<meta name="author" content="">
     	<link rel="icon" href=""> -->
 
-    	<title>A2 v.0.1.4</title>
+    	<title>A2 v.0.2.0</title>
 
       <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
@@ -18,6 +18,7 @@
       <link rel="stylesheet" type="text/css" href="ie10-viewport-bug-workaround.css">
       <!-- Custom styles for this template -->
       <link rel="stylesheet" type="text/css" href="styles.css">
+      <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,6 +35,7 @@
 
 <body>
 
+      <!-- navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -43,17 +45,18 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<label for="fileUpload"><a class="navbar-brand">Photo</a></label>
+				<label for="fileUpload"><a class="navbar-brand"><i class="fa fa-camera fa-2x"></i></a></label>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a  href="">Background 1</a></li>
-					<li><a  href="">Background 2</a></li>
+					<li class="active"><a id="bg1" data-toggle="tab">Background 1</a></li>
+					<li class=""><a id="bg2" data-toggle="tab">Background 2</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
 	</nav>
 
+      <!-- main area -->
       <div class="MainContainer" id="main">
                    <div class="container">
                           <div id="stage">
@@ -66,11 +69,34 @@
                                 <img id="bgImage" src="blank.png" />
                           </div>
                    </div><!-- /.container -->
-
-                  <div hidden>
-                        <input class="button" type="file" id="fileUpload" />
-                  </div>
       </div>
+
+      <!-- footer -->
+      <nav class="navbar navbar-inverse navbar-fixed-bottom">
+              <div class = "container navbar-footer">
+                  <div class="navbar-footer-left">
+                        <div class="footer-left-elt"><label for="rotateRight"><a><i class="fa fa-rotate-right fa-3x"></i></a></label></div>
+                        <div class="footer-left-elt"><label for="rotateLeft"><a><i class="fa fa-rotate-left fa-3x"></i></a></label></div>
+                  </div>
+
+                  <label for="showBackground"><a><i class="fa fa-picture-o fa-3x"></i></a></label>
+
+                  <div class="navbar-footer-right">
+                        <div class="footer-right-elt"><label for=""><a><i class="fa fa-times fa-3x"></i></a></label></div>
+                        <div class="footer-right-elt"><label for=""><a><i class="fa fa-check fa-3x"></i></a></label></div>
+                  </div>
+              </div>
+      </nav>
+
+      <!-- hidden -->
+      <div hidden>
+              <input type="file" id="fileUpload" />
+              <input type="button" id="showBackground" />
+              <input type="button" id="rotateRight" />
+              <input type="button" id="rotateLeft" />
+       </div>
+
+
 
 
   	<!-- Bootstrap core JavaScript
