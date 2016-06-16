@@ -1,11 +1,12 @@
 
-// backgrounds defined as { id : filename }
+// backgrounds defined as { id : [ filename, score ] }
 var backgrounds = {
-    "blank" : "blank.png" ,
-    "bg1" : "bg1.png" ,
-    "bg2" : "bg2.png"
+    "blank" : [ "blank.png", 0 ] ,
+    "bg1" : [ "bg1.png", 0 ] ,
+    "bg2" : [ "bg2.png", 0 ]
 };
-var currentBG = backgrounds["bg1"]
+var currentBG = "bg1";
+var currentBGfile = backgrounds[currentBG]
 
 
 // helper function
@@ -97,7 +98,7 @@ function toggleBackground() {
     if (bgShowing) {
         el("bgImage").src = backgrounds["blank"];
     } else {
-        el("bgImage").src = currentBG;
+        el("bgImage").src = currentBGfile;
     }
     bgShowing = !bgShowing;
 }
@@ -116,13 +117,48 @@ function rotateImageRight() {
     $.Velocity.hook($stage, 'rotateZ', currentRotation + 'deg');
 }
 
+
 // background change
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    currentBG = backgrounds[ $(e.target).attr("id") ];
-    el("bgImage").src = currentBG;
+    currentBG = $(e.target).attr("id")
+    currentBGfile = backgrounds[ currentBG ][0];
+    el("bgImage").src = currentBGfile;
     bgShowing = true;
+    updateColors();
 });
 
+
+// yes and no buttons
+el("yes").addEventListener("click", chooseYes);
+el("no").addEventListener("click", chooseNo);
+
+function chooseYes() {
+    backgrounds[currentBG][1] = 1;
+    updateColors();
+}
+function chooseNo() {
+    backgrounds[currentBG][1] = -1;
+    updateColors();
+}
+
+function updateColors() {
+    switch ( backgrounds[currentBG][1] ) {
+      case 1:
+          el("yesIcon").style.color = "#00FF00";
+          el("noIcon").style.color = "#337ab7";
+      break;
+      case -1:
+          el("noIcon").style.color = "#FF0000";
+          el("yesIcon").style.color = "#337ab7";
+      break;
+      default:
+          el("noIcon").style.color = "#337ab7";
+          el("yesIcon").style.color = "#337ab7";
+      break;
+
+    }
+
+}
 
 
 
