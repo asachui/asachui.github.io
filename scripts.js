@@ -6,7 +6,7 @@ var backgrounds = {
     "bg2" : [ "bg2.png", 0 ]
 };
 var currentBG = "bg1";
-var currentBGfile = backgrounds[currentBG]
+var currentBGfile = backgrounds[currentBG][0]
 
 
 // helper function
@@ -133,11 +133,19 @@ el("yes").addEventListener("click", chooseYes);
 el("no").addEventListener("click", chooseNo);
 
 function chooseYes() {
-    backgrounds[currentBG][1] = 1;
+    if ( backgrounds[currentBG][1] == 1 ) {
+      backgrounds[currentBG][1] = 0;
+    } else {
+      backgrounds[currentBG][1] = 1;
+    }
     updateColors();
 }
 function chooseNo() {
-    backgrounds[currentBG][1] = -1;
+    if ( backgrounds[currentBG][1] == -1 ) {
+      backgrounds[currentBG][1] = 0;
+    } else {
+      backgrounds[currentBG][1] = -1;
+    }
     updateColors();
 }
 
@@ -155,10 +163,17 @@ function updateColors() {
           el("noIcon").style.color = "#337ab7";
           el("yesIcon").style.color = "#337ab7";
       break;
-
     }
-
 }
+
+// analyze results
+el("analyze").addEventListener("click", analyzeResults);
+function analyzeResults() {
+    data = "?bg1=" + backgrounds["bg1"][1];
+    data += "&bg2=" + backgrounds["bg2"][1];
+    window.location.replace("results.html" + data);
+}
+
 
 
 
