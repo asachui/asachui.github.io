@@ -7,6 +7,7 @@
   position: relative;
 }
 
+/* this is really important for making tabs work on mobiles*/
 #tabs {
   cursor: pointer;
 }
