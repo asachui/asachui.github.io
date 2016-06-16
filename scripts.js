@@ -121,6 +121,7 @@ function rotateImageRight() {
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     currentBG = backgrounds[ $(e.target).attr("id") ];
     el("bgImage").src = currentBG;
+    bgShowing = true;
 });
 
 
