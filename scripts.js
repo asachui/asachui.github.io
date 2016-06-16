@@ -8,6 +8,9 @@ var backgrounds = {
 var currentBG = "bg1";
 var currentBGfile = backgrounds[currentBG][0]
 
+// parameter names
+params = [ "bg1", "bg2" ];
+
 
 // helper function
 function el(id){return document.getElementById(id);} // Get elem by ID
@@ -168,8 +171,11 @@ function updateColors() {
 // analyze results
 el("analyze").addEventListener("click", analyzeResults);
 function analyzeResults() {
-    data = "?bg1=" + backgrounds["bg1"][1];
-    data += "&bg2=" + backgrounds["bg2"][1];
+
+    data = "?" + params[0] + "=" + backgrounds[params[0] ][1];
+    for (var i = 1; i < params.length; i++) {
+      data += "&" + params[i] + "=" + backgrounds[params[i] ][1];
+    }
     window.location.replace("results.html" + data);
 }
 
