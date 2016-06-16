@@ -7,6 +7,10 @@
   position: relative;
 }
 
+#tabs {
+  cursor: pointer;
+}
+
 #stage {
   background: url("defaultPhoto.png");
   background-size: 200px 200px;
