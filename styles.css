@@ -5,6 +5,15 @@
   margin: 0;
   padding: 0px;
   position: relative;
+  max-width: 665px;
+}
+
+.navbar {
+  max-width: 665px;
+}
+
+.container {
+  max-width: 665px;
 }
 
 #tabs {
