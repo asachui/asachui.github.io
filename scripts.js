@@ -50,7 +50,7 @@ var Pan = new Hammer.Pan();
 var Pinch = new Hammer.Pinch();
 
 // use gestures together
-Pinch.recognizeWith([Pan]);
+//Pinch.recognizeWith([Pan]);
 
 // add the recognizers
 manager.add(Pan);
