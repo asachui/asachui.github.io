@@ -10,6 +10,7 @@
 /* this is really important for making tabs work on mobiles*/
 #tabs {
   cursor: pointer;
+  text-align: center;
 }
 
 #stage {
