@@ -92,6 +92,7 @@ manager.on('pinchend', function(e) {
   currentScale = getRelativeScale(e.scale);
 });
 
+
 // show background button pressed
 el("showBackground").addEventListener("click", toggleBackground);
 
@@ -154,18 +155,18 @@ function chooseNo() {
 
 function updateColors() {
     switch ( backgrounds[currentBG][1] ) {
-      case 1:
-          el("yesIcon").style.color = "#00FF00";
-          el("noIcon").style.color = "#337ab7";
-      break;
-      case -1:
-          el("noIcon").style.color = "#FF0000";
-          el("yesIcon").style.color = "#337ab7";
-      break;
-      default:
-          el("noIcon").style.color = "#337ab7";
-          el("yesIcon").style.color = "#337ab7";
-      break;
+        case 1:
+            el("yesIcon").style.color = "#00FF00";
+            el("noIcon").style.color = "#337ab7";
+            break;
+        case -1:
+            el("noIcon").style.color = "#FF0000";
+            el("yesIcon").style.color = "#337ab7";
+            break;
+        default:
+            el("noIcon").style.color = "#337ab7";
+            el("yesIcon").style.color = "#337ab7";
+            break;
     }
 
     if (bgShowing) {
@@ -179,9 +180,25 @@ function updateColors() {
 el("analyze").addEventListener("click", analyzeResults);
 function analyzeResults() {
 
+/*
     data = "?" + params[0] + "=" + backgrounds[params[0] ][1];
     for (var i = 1; i < params.length; i++) {
       data += "&" + params[i] + "=" + backgrounds[params[i] ][1];
+    }
+*/
+    data = "?data=";
+    for (var i = 0; i < params.length; i++) {
+        switch ( backgrounds[ params[i] ][1] ) {
+            case -1:
+                data += "n";
+                break;
+            case 1:
+                data += "y";
+                break;
+            default:
+                data += "x";
+                break;
+      }
     }
     window.location.replace("results.html" + data);
 }
