@@ -23,11 +23,11 @@
 
 #stage {
   background: url("defaultPhoto.png");
-  background-size: 400px 400px;
+  background-size: 300px 300px;
   background-repeat: no-repeat;
   border: 5px solid #009b2f;
-  width: 410px;
-  height: 410px;
+  width: 310px;
+  height: 310px;
   left: 50px;
   top: 150px;
   position: absolute;
